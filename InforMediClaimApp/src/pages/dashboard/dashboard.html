@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="title-style">Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="background" padding>
+  <ion-card>
+
+    <ion-card-header>
+      Welcome {{name}}
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label col-8>Claim limit</ion-label>
+        <ion-label col-4>{{limit}}</ion-label>
+      </ion-item>
+      <ion-item>
+
+        <ion-label col-8>Claimable Amount</ion-label>
+        <ion-label col-4>{{balance}}</ion-label>
+
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card>
+
+    <ion-card-header>
+      Claim Summary
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+
+        Claimed
+        <ion-badge item-end>{{releaseCount}}</ion-badge>
+      </ion-item>
+
+      <ion-item>
+        Released
+        <ion-badge item-end>{{readyCount}}</ion-badge>
+      </ion-item>
+
+      <ion-item>
+        Accepted
+        <ion-badge item-end>{{acceptedCount}}</ion-badge>
+      </ion-item>
+
+      <ion-item>
+        Pending
+        <ion-badge item-end>{{pendingCount}}</ion-badge>
+      </ion-item>
+      <ion-item>
+
+        Rejected
+        <ion-badge item-end>{{rejectedCount}}</ion-badge>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
+
+
+</ion-content>

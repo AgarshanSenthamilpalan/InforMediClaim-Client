@@ -1,0 +1,28 @@
+page-login {
+    .background {
+        background: url('/assets/imgs/bluebackground.jpeg')
+      }
+    login{
+        background-image: url('../../img/bluebackground.jpeg');
+    }     
+    .loginpgLogo{
+        display: flex;
+        justify-content: center;
+        margin-top: 20%;
+        margin-bottom: 5%;
+     }
+     .textcolor{
+         color: #488aff,
+         
+     }
+     .titlestyle{
+         color: white;
+         text-align: center;
+         font-size: 24px;
+     }
+     .logintextstyle{
+        color: white;
+        text-align: center;
+        font-size: 16px;
+    }
+}

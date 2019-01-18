@@ -1,0 +1,7 @@
+{
+  "name": "InforMediClaimApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

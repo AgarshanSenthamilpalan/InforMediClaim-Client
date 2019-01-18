@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="title-style">Pending Claims</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="background" padding>
+  <ion-title class="aligncenter">Swipe to view/delete claims</ion-title>
+  <div *ngFor="let form of forms">
+    <div *ngIf="form.user_id == 101">
+      <ion-list>
+        <ion-item-sliding #item *ngIf="form.status == 'accepted'">
+          <ion-item>
+            <ion-label>
+              <br>
+              <p><b>Requested on {{ form.requestDate }} </b></p>
+              <p><b>Processing started on {{ form.processDate }}</b></p>
+              <p>Claiming for Rs. {{ form.amount }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item-options side="right">
+            <button ion-button (click)="viewDetails(form)">View details</button>
+          </ion-item-options>
+          <ion-item-options side="left">
+            <button ion-button (click)="viewDetails(form)">View details</button>
+          </ion-item-options>
+        </ion-item-sliding>
+        <ion-item-sliding #item *ngIf="form.status == 'submitted'">
+          <ion-item>
+
+            <ion-label>
+              <p><b>Requested on {{ form.requestDate }}</b></p>
+              <p><b>Processing not started</b></p>
+              <p>Claiming for Rs. {{ form.amount }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item-options side="right">
+            <button ion-button (click)="viewDetails(form)">View details</button>
+            <button ion-button (click)="deleteDetails(form)" ion-button color="danger">Delete details</button>
+          </ion-item-options>
+          <ion-item-options side="left">
+            <button ion-button (click)="viewDetails(form)">View details</button>
+
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

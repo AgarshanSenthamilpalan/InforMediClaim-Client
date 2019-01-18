@@ -1,0 +1,32 @@
+
+.alignleft{
+    
+    display: block;
+}
+.aligncenter{
+    
+    text-align: center;
+}
+
+.alignbuttoncenter {
+
+    float: center;
+}
+.alignright {
+    float:right;
+    
+}
+.alignleft{
+    
+    display: inline;
+}
+.button-inner {
+    flex-flow: column;
+  }
+
+  .my-label {
+    font-size: 12px;
+  }
+  .background {
+    background: url('/assets/imgs/bluebackground.jpeg')
+  }

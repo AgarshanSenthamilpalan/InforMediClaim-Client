@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="title-style">New Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background" padding>
+  <ion-title class="aligncenter">Claim Request Form</ion-title>
+  <br>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Name of Employee</ion-label>
+      <ion-input type="text" [(ngModel)]="NameOfEmployee"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Designation</ion-label>
+      <ion-input type="text" [(ngModel)]="designation"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>EPF No</ion-label>
+      <ion-input type="text" [(ngModel)]="EpfNo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Claim for the month of</ion-label>
+      <ion-datetime displayFormat="MMMM/YYYY" pickerFormat="MMMM YYYY" [(ngModel)]="claimMonth" [max]="maxDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Name of the patient</ion-label>
+      <ion-input type="text" [(ngModel)]="nameofpatient"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Patients relationship to the employee</ion-label>
+      <ion-input type="text" [(ngModel)]="patientrelationship"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Name of the Specialist</ion-label>
+      <ion-input type="text" [(ngModel)]="nameofdoctor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Nature of illness</ion-label>
+      <ion-input type="text" [(ngModel)]="natureofillness"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Date of Expenditure</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dateofExpen" [max]="maxDate"></ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>Receipt No</ion-label>
+      <ion-input type="text" [(ngModel)]="ReceiptNo"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>Amount of expenditure</ion-label>
+      <ion-input type="number" [(ngModel)]="amountofExpen"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <p *ngIf="ReceiptUploaded">Receipt Uploaded - {{ReceiptNo}}</p>
+
+    </ion-item>
+  </ion-list>
+
+  <div>
+    <button (click)="takePhoto()" class="button-inner" ion-button color="primary" col-12 *ngIf="uploadButtonHide">
+      Upload Receipt </button>
+  </div>
+
+  <div>
+    <button (click)="deleteButtonClicked()" class="button-inner" ion-button color="danger" *ngIf="uploadButtonClicked">
+      Delete Receipt </button>
+  </div>
+  
+
+  <div>
+    <button (click)="submitButtonClicked()" class="alignright" ion-button color="primary"> submit </button>
+  </div>
+  <div>
+    <button (click)="cancelButtonClicked()" class="alignright" ion-button color="danger"> cancel </button>
+  </div>
+
+
+
+
+
+</ion-content>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "687363091029",
+    "firebase_url": "https://expense-management-e1e6d.firebaseio.com",
+    "project_id": "expense-management-e1e6d",
+    "storage_bucket": "expense-management-e1e6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687363091029:android:2f4af1459bbd3ed9",
+        "android_client_info": {
+          "package_name": "com.infor.gtnexus.mediclaim.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687363091029-ecujj97aorrt1amae60ks0hno989ta0t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv1YkGAvXUNOzA_FetGrkOlM0U6ClGTVM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

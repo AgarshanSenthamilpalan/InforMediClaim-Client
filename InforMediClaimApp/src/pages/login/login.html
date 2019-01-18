@@ -1,0 +1,27 @@
+<ion-content class="background" padding>
+  <div class="loginpgLogo">
+    <ion-img width="100" height="100" src="/assets/imgs/infor.png"></ion-img>
+  </div>
+  <br>
+  <div class="titlestyle">InforMediClaim</div>
+  <br>
+  <div class="logintextstyle">Login</div>
+  <br>
+  <ion-list>
+
+    <ion-item>
+      <ion-label fixed color="primary">Username</ion-label>
+      <ion-input type="text" value="" color="primary" class="textcolor" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label fixed color="primary" class="textcolor">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="userpassword"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <br>
+  <div>
+    <button (click)="loginButtonClicked()" ion-button color="light" col-12 outline>Sign In</button>
+  </div>
+</ion-content>
