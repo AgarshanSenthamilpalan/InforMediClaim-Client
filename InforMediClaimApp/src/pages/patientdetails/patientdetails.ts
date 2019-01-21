@@ -189,7 +189,7 @@ export class PatientdetailsPage {
       "nameDoctor": this.nameofdoctor,
       "dateofExpenditure": this.dateofExpen,
       "recieptNo": this.ReceiptNo,
-      "amount": this.amountofExpen,
+      "amount":this.amountofExpen,
       "NatureIllness": this.natureofillness,
       "status": "submitted",
       "employeefile": this.employeefile,
