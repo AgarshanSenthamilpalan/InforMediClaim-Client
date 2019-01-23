@@ -22,7 +22,7 @@ export class PatientdetailsPage {
   natureofillness;
   ReceiptNo;
   amountofExpen;
-  employeefile;
+  employeefile = [];
   myInput;
   myInputClaim;
   claimMonth;
@@ -38,6 +38,9 @@ export class PatientdetailsPage {
   loader
   availableBalance
   pendingCount
+  receiptCount = 0;
+  
+
   maxDate: string = new Date().toISOString();
   public buttonClicked: boolean = false;
 
@@ -57,7 +60,7 @@ export class PatientdetailsPage {
     this.uploadButtonHide = true;
 
     //retrieve data from using users tabel using user id
-    this.fdb.list('/users', ref => ref.orderByChild('user_id').equalTo(this.userIdNo)).valueChanges().subscribe(
+   this.fdb.list('/users', ref => ref.orderByChild('user_id').equalTo(this.userIdNo)).valueChanges().subscribe(
       userData => {
 
         this.NameOfEmployee = userData[0]['name'];
@@ -68,8 +71,12 @@ export class PatientdetailsPage {
         this.claimNo = userData[0]['pendingCount'] + userData[0]['readyCount'] + userData[0]['rejectedCount']
           + userData[0]['acceptedCount'] + userData[0]['releaseCount'];
      
+
       }
     );
+
+
+  
 
   }
 
@@ -101,10 +108,12 @@ export class PatientdetailsPage {
 
         });
 
+        
         this.loader.present().then(() => {
-          const pictures = storage().ref(this.userIdNo + "-" + (this.claimNo + 1));
+          const pictures = storage().ref(this.userIdNo+"/"+this.claimNo).child(this.userIdNo + "-" + ( this.claimNo + 1 )+"-"+this.receiptCount);
           pictures.putString(image, 'data_url').then(data => {
-
+             
+          
             //get receipt url to upload it with forms
             this.getPhotoUrl();
 
@@ -114,7 +123,7 @@ export class PatientdetailsPage {
 
 
         this.uploadButtonClicked = true;
-        this.uploadButtonHide = false;
+        // this.uploadButtonHide = false;
       }
       catch (e) {
         console.error(e);
@@ -204,10 +213,10 @@ export class PatientdetailsPage {
 
     });
 
-    this.fdb.list('/users', ref => ref.orderByChild('user_id').equalTo(this.userIdNo)).snapshotChanges().subscribe(data => {
+    var updateCount = this.fdb.list('/users', ref => ref.orderByChild('user_id').equalTo(this.userIdNo)).snapshotChanges().subscribe(data => {
 
       this.fdb.object('/users/' + data[0].key).update({ pendingCount: this.pendingCount + 1 });
-
+      updateCount.unsubscribe();
     })
 
 
@@ -222,12 +231,13 @@ export class PatientdetailsPage {
   //get receipt url
   getPhotoUrl() {
 
-    firebase.storage().ref().child(this.userIdNo + "-" + (this.claimNo + 1)).getDownloadURL()
+    firebase.storage().ref(this.userIdNo+"/"+this.claimNo).child(this.userIdNo + "-" + ( this.claimNo + 1 )+"-"+this.receiptCount).getDownloadURL()
       .then((url) => {
-        this.employeefile = url;
 
+        this.employeefile[this.receiptCount] = url;
         this.loader.dismiss().then(() => {
-          this.ReceiptUploaded = true;
+          // this.ReceiptUploaded = true;
+          this.receiptCount = this.receiptCount + 1;
         });
       })
   }
@@ -272,13 +282,13 @@ export class PatientdetailsPage {
     alert.present();
   }
 
-  //delete uploaded receipt 
+ // delete uploaded receipt 
   deleteButtonClicked() {
-    firebase.storage().ref().child(this.userIdNo + "-" + (this.claimNo + 1)).delete();
+    firebase.storage().ref(this.userIdNo+"/"+this.claimNo).child(this.userIdNo + "-" + ( this.claimNo + 1 )+"-"+(this.receiptCount - 1)).delete();
     this.uploadButtonHide = true;
     this.uploadButtonClicked = false;
-    this.ReceiptUploaded = false;
-    this.employeefile = '';
+    // this.ReceiptUploaded = false;s
+    
   }
 
 

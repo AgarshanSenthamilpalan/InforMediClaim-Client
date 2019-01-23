@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { PatientdetailsPage } from '../patientdetails/patientdetails';
 
 declare var google;
 
@@ -69,11 +70,11 @@ export class DashboardPage {
       console.log(userData);
       this.populateUserDetails();
     }
-
-    
     );
     
   }
+  
+  
   //populate user details in UI
   populateUserDetails() {
     this.name = this.currentUser.name;
@@ -85,9 +86,6 @@ export class DashboardPage {
     this.drawChart();
     
   }
-
-
-
 
 
   drawChart() {
@@ -253,6 +251,10 @@ retreiveMonthData(){
           this.drawTable(this.submittedCount,this.submittedAmount,this.readyCount,this.readyAmount,this.releaseCount,this.acceptedCount,this.rejectedCount,this.releasedAmount,this.accpetedAmount,this.rejectedAmount);
   }
 
-  
+  newRequestClicked(){
+    let currentIndex = this.navCtrl.getActive().index;
+    this.navCtrl.push(PatientdetailsPage).then(() => {
+      this.navCtrl.remove(currentIndex);});
+  }
 
 }

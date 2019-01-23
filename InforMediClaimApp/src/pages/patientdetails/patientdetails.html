@@ -65,7 +65,7 @@
 
     <ion-item>
       <ion-label floating>Amount of expenditure</ion-label>
-      <ion-input type="number" [(ngModel)]="amountofExpen" value="{{ exampleNumber | number : '1.2-2'}}"></ion-input>
+      <ion-input type="number" [(ngModel)]="amountofExpen" ></ion-input>
     </ion-item>
 
     <ion-item>
@@ -79,11 +79,22 @@
       Upload Receipt </button>
   </div>
 
-  <div>
-    <button (click)="deleteButtonClicked()" class="button-inner" ion-button color="danger" *ngIf="uploadButtonClicked">
+  <!-- <div>
+    <button (click)="deleteButtonClicked()" class="button-inner" ion-button color="danger" *ngIf="uploadButtonClicked" clear item-end>
       Delete Receipt </button>
-  </div>
-  
+  </div> -->
+
+  <ion-list >
+      <ion-item *ngFor="let element of employeefile">
+        <ion-thumbnail item-start>
+          <!-- <img [src]="element"> -->
+        </ion-thumbnail>
+        <h2>Receipt Uploaded</h2>
+        
+        <button (click)="deleteButtonClicked()" class="button-inner" ion-button color="danger"  clear item-end>
+            Delete</button>
+      </ion-item>
+    </ion-list>
 
   <div>
     <button (click)="submitButtonClicked()" class="alignright" ion-button color="primary"> submit </button>
