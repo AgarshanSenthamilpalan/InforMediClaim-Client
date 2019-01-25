@@ -9,10 +9,12 @@ import { PatientdetailsPage } from '../pages/patientdetails/patientdetails';
 import { LoginPage } from '../pages/login/login'
 
 
+
 import { AlertController } from 'ionic-angular';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;

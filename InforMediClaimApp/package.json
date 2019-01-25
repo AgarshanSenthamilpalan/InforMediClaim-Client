@@ -48,6 +48,7 @@
     "cordova-sqlite-storage": "2.6.0",
     "firebase": "^5.7.2",
     "ionic-angular": "3.9.2",
+    "ionic-img-viewer": "^2.9.0",
     "ionicons": "3.0.0",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",

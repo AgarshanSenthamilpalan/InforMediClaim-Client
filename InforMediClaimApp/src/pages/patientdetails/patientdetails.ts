@@ -7,6 +7,7 @@ import { Camera, CameraOptions } from "@ionic-native/camera"
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
+import { ParseError } from '@angular/compiler';
 
 @IonicPage()
 @Component({
@@ -22,7 +23,7 @@ export class PatientdetailsPage {
   natureofillness;
   ReceiptNo;
   amountofExpen;
-  employeefile;
+  employeefile = [];
   myInput;
   myInputClaim;
   claimMonth;
@@ -38,12 +39,16 @@ export class PatientdetailsPage {
   loader
   availableBalance
   pendingCount
+  receiptCount = 0;
+  receiptDatabaseNumber;
+  requestedClaimAmount;
   maxDate: string = new Date().toISOString();
   public buttonClicked: boolean = false;
 
 
+  requestedClaimData
+  requestDate
 
-  requestDate: string = new Date().toLocaleDateString();
   constructor(public loadingCtrl: LoadingController, public storage: Storage, private alertCtrl: AlertController, public fdb: AngularFireDatabase, private camera: Camera, public navCtrl: NavController, public navParams: NavParams) {
 
     //current date/month/year
@@ -61,19 +66,25 @@ export class PatientdetailsPage {
       userData => {
 
         this.NameOfEmployee = userData[0]['name'];
+        this.requestedClaimAmount = userData[0]['requestedClaimAmount'];
         this.designation = userData[0]['designation'];
         this.EpfNo = userData[0]['epf_no'];
         this.availableBalance = userData[0]['balance'];
         this.pendingCount = userData[0]['pendingCount']
         this.claimNo = userData[0]['pendingCount'] + userData[0]['readyCount'] + userData[0]['rejectedCount']
           + userData[0]['acceptedCount'] + userData[0]['releaseCount'];
-     
+
+
       }
     );
+
+
+
 
   }
 
  
+
 
 
   //upload receipt
@@ -101,9 +112,12 @@ export class PatientdetailsPage {
 
         });
 
+
         this.loader.present().then(() => {
-          const pictures = storage().ref(this.userIdNo + "-" + (this.claimNo + 1));
+
+          const pictures = storage().ref(this.userIdNo + "/" + ((parseInt(this.claimNo) + 1))).child(this.userIdNo + "-" + (this.claimNo + 1) + "-" + this.receiptCount);
           pictures.putString(image, 'data_url').then(data => {
+
 
             //get receipt url to upload it with forms
             this.getPhotoUrl();
@@ -114,7 +128,7 @@ export class PatientdetailsPage {
 
 
         this.uploadButtonClicked = true;
-        this.uploadButtonHide = false;
+        // this.uploadButtonHide = false;
       }
       catch (e) {
         console.error(e);
@@ -135,7 +149,7 @@ export class PatientdetailsPage {
       && this.dateofExpen && this.ReceiptNo &&
       this.amountofExpen && this.natureofillness && this.requestDate && this.claimMonth &&
       this.NameOfEmployee && this.designation && this.EpfNo &&
-      this.employeefile && this.availableBalance >= this.amountofExpen
+      this.employeefile && (this.availableBalance - this.requestedClaimAmount) >= this.amountofExpen
     ) {
 
       let alert = this.alertCtrl.create({
@@ -146,7 +160,7 @@ export class PatientdetailsPage {
             text: 'Cancel',
             role: 'cancel',
             handler: () => {
-             
+
             }
           },
           {
@@ -159,7 +173,7 @@ export class PatientdetailsPage {
       });
       alert.present();
 
-    } else if (this.amountofExpen > this.availableBalance) {
+    } else if ((this.availableBalance - this.requestedClaimAmount) < this.amountofExpen) {
       this.showExceedAmountAlert();
     }
     else {
@@ -168,12 +182,12 @@ export class PatientdetailsPage {
   }
 
 
-  //amount of expenditure and available balance validation
+  //claimable amount exceed
   showExceedAmountAlert() {
 
     const alert = this.alertCtrl.create({
-      title: 'Amount of Expenditure Exceed available balance',
-      subTitle: 'You cannot claim higher than the availble balance amount',
+      title: 'Amount of Expenditure Exceed claimable amount',
+      subTitle: 'You cannot claim higher than the claimable amount',
       buttons: ['OK']
     });
     alert.present();
@@ -203,31 +217,38 @@ export class PatientdetailsPage {
 
 
     });
+    var finalRequestedClaimAmount = parseFloat(this.requestedClaimAmount) + parseFloat(this.amountofExpen);
+    var updateCount = this.fdb.list('/users', ref => ref.orderByChild('user_id').equalTo(this.userIdNo)).snapshotChanges().subscribe(data => {
 
-    this.fdb.list('/users', ref => ref.orderByChild('user_id').equalTo(this.userIdNo)).snapshotChanges().subscribe(data => {
-
-      this.fdb.object('/users/' + data[0].key).update({ pendingCount: this.pendingCount + 1 });
-
+      this.fdb.object('/users/' + data[0].key).update({ pendingCount: this.pendingCount + 1, requestedClaimAmount: finalRequestedClaimAmount });
+      updateCount.unsubscribe();
     })
-
 
 
     let currentIndex = this.navCtrl.getActive().index;
     this.navCtrl.push(PatientdetailsPage).then(() => {
       this.navCtrl.remove(currentIndex);
     });
+    var remainingClaimBalance = this.availableBalance - this.requestedClaimAmount
+    document.getElementById("validate_balance").innerHTML = "Maximum claimable amount " + remainingClaimBalance.toString();
+    
+
+    
   }
 
 
   //get receipt url
   getPhotoUrl() {
 
-    firebase.storage().ref().child(this.userIdNo + "-" + (this.claimNo + 1)).getDownloadURL()
+    firebase.storage().ref(this.userIdNo + "/" + (parseInt(this.claimNo) + 1)).child(this.userIdNo + "-" + (this.claimNo + 1) + "-" + this.receiptCount).getDownloadURL()
       .then((url) => {
-        this.employeefile = url;
 
+        this.employeefile[this.receiptCount] = url;
         this.loader.dismiss().then(() => {
-          this.ReceiptUploaded = true;
+          // this.ReceiptUploaded = true;
+          this.receiptCount = this.receiptCount + 1;
+
+          this.receiptDatabaseNumber = this.userIdNo + "-" + (this.claimNo + 1) + "-" + this.receiptCount;
         });
       })
   }
@@ -272,13 +293,38 @@ export class PatientdetailsPage {
     alert.present();
   }
 
-  //delete uploaded receipt 
-  deleteButtonClicked() {
-    firebase.storage().ref().child(this.userIdNo + "-" + (this.claimNo + 1)).delete();
-    this.uploadButtonHide = true;
-    this.uploadButtonClicked = false;
-    this.ReceiptUploaded = false;
-    this.employeefile = '';
+  // delete uploaded receipt 
+  deleteButtonClicked(element) {
+
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Submission',
+      message: 'Do you want to delete the receipt',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            firebase.storage().ref(this.userIdNo + "/" + (parseInt(this.claimNo) + 1)).child(this.userIdNo + "-" + (this.claimNo + 1) + "-" + (this.receiptCount - 1)).delete();
+            this.uploadButtonHide = true;
+            this.uploadButtonClicked = false;
+            if (element !== -1) {
+              this.employeefile.splice(element, 1);
+              console.log(this.employeefile);
+            }
+
+          }
+        }
+      ]
+    });
+    alert.present();
+
+
   }
 
 

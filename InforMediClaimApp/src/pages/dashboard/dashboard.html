@@ -3,33 +3,47 @@
     <button ion-button menuToggle left>
       <ion-icon name="menu"></ion-icon>
     </button>
+   
     <ion-title class="title-style">Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content class="background" padding>
-  <ion-card>
 
-    <ion-card-header>
+<ion-content class="background">
+ 
+    <br>
+    <div class="textcolor">
       Welcome {{name}}
-    </ion-card-header>
+</div>
+    <br>
+  
+    <ion-card>
+        <ion-card-header>
+           Claim Balance Summary
+          </ion-card-header>
+          <ion-card-content>
+        <ion-item  id="barchart_values" >
 
-    <ion-card-content>
-      <ion-item>
-        <ion-label col-8>Claim limit</ion-label>
-        <ion-label col-4>{{limit}}</ion-label>
-      </ion-item>
-      <ion-item>
+          </ion-item>
+          <br>
+          <br>
+          <ion-row>
+              <ion-col>
+                  <ion-fab  right bottom>
+                      <button (click)="newRequestClicked()" ion-fab>
+                        <ion-icon name ="add"></ion-icon>
+                      </button>
+                     </ion-fab>
+              </ion-col>
+          </ion-row>
+            
+            
+        </ion-card-content>
+    </ion-card>
+ 
 
-        <ion-label col-8>Claimable Amount</ion-label>
-        <ion-label col-4>{{balance}}</ion-label>
-
-      </ion-item>
-
-    </ion-card-content>
-
-  </ion-card>
+  
   <ion-card>
 
     <ion-card-header>
@@ -37,34 +51,31 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item>
-
-        Claimed
-        <ion-badge item-end>{{releaseCount}}</ion-badge>
-      </ion-item>
-
-      <ion-item>
-        Released
-        <ion-badge item-end>{{readyCount}}</ion-badge>
-      </ion-item>
-
-      <ion-item>
-        Accepted
-        <ion-badge item-end>{{acceptedCount}}</ion-badge>
-      </ion-item>
-
-      <ion-item>
-        Pending
-        <ion-badge item-end>{{pendingCount}}</ion-badge>
-      </ion-item>
-      <ion-item>
-
-        Rejected
-        <ion-badge item-end>{{rejectedCount}}</ion-badge>
-      </ion-item>
+        <ion-segment [(ngModel)]="dateType" color="primary" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="today">
+              Today
+            </ion-segment-button>
+            <ion-segment-button value="month">
+              This Month
+            </ion-segment-button>
+            <ion-segment-button value="year">
+                This Year
+              </ion-segment-button>
+          </ion-segment>
     </ion-card-content>
+    
+      <ion-item id="table_div">
 
+      </ion-item>
+    
   </ion-card>
 
 
+<div >
+
+</div>
+
+
+
 </ion-content>
+

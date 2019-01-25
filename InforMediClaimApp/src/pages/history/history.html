@@ -10,7 +10,7 @@
 
 
 <ion-content class="background" padding>
-  <ion-title class="aligncenter">Swipe to view claims</ion-title>
+  <div class="textcolor">Swipe to view claims</div>
   <br>
   <!-- <ion-tabs>
         <ion-tab [root]="tab1Root" tabTitle="Released"></ion-tab>
@@ -21,7 +21,8 @@
       <ion-list>
         <ion-item-sliding #item *ngIf="form.status == 'released'">
           <ion-item>
-            <!-- <ion-icon name="arrow-back" item-end></ion-icon> -->
+              <!-- <ion-img width="25" height="25" src="assets/imgs/checked" item-end></ion-img> -->
+            <ion-icon name="checkmark" color="secondary" item-end></ion-icon>
             <ion-label>
               <p><b>Requested on {{ form.date }}</b></p>
               <p><b>Released on {{ form.releasedate }}</b></p>
@@ -40,7 +41,7 @@
         <ion-item-sliding #item *ngIf="form.status == 'rejected'">
           <ion-item>
 
-            <!-- <ion-icon name="custom-close" item-end></ion-icon> -->
+              <ion-icon name="close" color="danger" item-end></ion-icon>
             <ion-label>
               <p><b>Requested on {{ form.date }}</b></p>
               <p><b>Rejected on {{ form.rejectdate }}</b></p>

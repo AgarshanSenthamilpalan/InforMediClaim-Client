@@ -8,65 +8,67 @@
 </ion-header>
 
 <ion-content class="background" padding>
-  <ion-title class="aligncenter">Claim Request Form</ion-title>
+  <div class="textcolor">Claim Request Form</div>
   <br>
   <ion-list>
     <ion-item>
       <ion-label floating>Name of Employee</ion-label>
-      <ion-input type="text" [(ngModel)]="NameOfEmployee"></ion-input>
+      <ion-input type="text" [(ngModel)]="NameOfEmployee" required="required"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Designation</ion-label>
-      <ion-input type="text" [(ngModel)]="designation"></ion-input>
+      <ion-input type="text" [(ngModel)]="designation" required="required"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>EPF No</ion-label>
-      <ion-input type="text" [(ngModel)]="EpfNo"></ion-input>
+      <ion-input type="text" [(ngModel)]="EpfNo" required="required"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Claim for the month of</ion-label>
-      <ion-datetime displayFormat="MMMM/YYYY" pickerFormat="MMMM YYYY" [(ngModel)]="claimMonth" [max]="maxDate"></ion-datetime>
+      <ion-datetime displayFormat="MMMM/YYYY" pickerFormat="MMMM YYYY" [(ngModel)]="claimMonth" [max]="maxDate" required="required"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Name of the patient</ion-label>
-      <ion-input type="text" [(ngModel)]="nameofpatient"></ion-input>
+      <ion-input type="text" [(ngModel)]="nameofpatient" required="required"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Patients relationship to the employee</ion-label>
-      <ion-input type="text" [(ngModel)]="patientrelationship"></ion-input>
+      <ion-input type="text" [(ngModel)]="patientrelationship" required="required"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Name of the Specialist</ion-label>
-      <ion-input type="text" [(ngModel)]="nameofdoctor"></ion-input>
+      <ion-input type="text" [(ngModel)]="nameofdoctor" required="required"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Nature of illness</ion-label>
-      <ion-input type="text" [(ngModel)]="natureofillness"></ion-input>
+      <ion-input type="text" [(ngModel)]="natureofillness" required="required"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Date of Expenditure</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dateofExpen" [max]="maxDate"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dateofExpen" [max]="maxDate" required="required"></ion-datetime>
     </ion-item>
-
 
     <ion-item>
       <ion-label floating>Receipt No</ion-label>
-      <ion-input type="text" [(ngModel)]="ReceiptNo"></ion-input>
+      <ion-input type="text" [(ngModel)]="ReceiptNo" required="required"></ion-input>
     </ion-item>
-
 
     <ion-item>
       <ion-label floating>Amount of expenditure</ion-label>
-      <ion-input type="number" [(ngModel)]="amountofExpen"></ion-input>
+      <ion-input type="number" step="0.01" [(ngModel)]="amountofExpen" required="required"></ion-input>
     </ion-item>
+    <ion-item id="validate_balance">
+        <ion-label >Maximum claimable amount {{this.availableBalance - this.requestedClaimAmount}}</ion-label>
+      
+      </ion-item>
 
     <ion-item>
       <p *ngIf="ReceiptUploaded">Receipt Uploaded - {{ReceiptNo}}</p>
@@ -79,11 +81,25 @@
       Upload Receipt </button>
   </div>
 
-  <div>
-    <button (click)="deleteButtonClicked()" class="button-inner" ion-button color="danger" *ngIf="uploadButtonClicked">
+  <!-- <div>
+    <button (click)="deleteButtonClicked()" class="button-inner" ion-button color="danger" *ngIf="uploadButtonClicked" clear item-end>
       Delete Receipt </button>
-  </div>
-  
+  </div> -->
+
+  <ion-list >
+      <ng-container *ngFor="let element of employeefile">
+          <ion-item *ngIf="element">
+        <ion-thumbnail item-start>
+          <img [src]="element" imageViewer>
+        </ion-thumbnail>
+        <ion-label>Receipt Uploaded</ion-label>
+        
+        <button (click)="deleteButtonClicked(element)" ion-button color="danger"  clear item-end>
+            Delete</button>
+         
+      </ion-item>
+    </ng-container>
+    </ion-list>
 
   <div>
     <button (click)="submitButtonClicked()" class="alignright" ion-button color="primary"> submit </button>
@@ -91,9 +107,6 @@
   <div>
     <button (click)="cancelButtonClicked()" class="alignright" ion-button color="danger"> cancel </button>
   </div>
-
-
-
 
 
 </ion-content>

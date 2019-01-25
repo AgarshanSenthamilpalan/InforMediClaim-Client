@@ -1,142 +1,141 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Claimed form details</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Claimed form details</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content class="background"padding>
-  <ion-list>  
-      <ion-row>
-          <ion-col>
-          <ion-label >Status :</ion-label>
-          </ion-col>
-          <ion-col>
-              <ion-label> {{formDetails.status}}</ion-label>
-          </ion-col>
+<ion-content class="background" padding>
+    <ion-list>
+        <ion-row>
+            <ion-col>
+                <ion-label>Status :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.status}}</ion-label>
+            </ion-col>
         </ion-row>
-      <ion-row>   
-          <ion-col>
-              <ion-label>Claim No : </ion-label>
-          </ion-col>
-          <ion-col>
-              <ion-label> {{formDetails.ClaimNo}}</ion-label>
-          </ion-col>
+        <ion-row>
+            <ion-col>
+                <ion-label>Claim No : </ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.ClaimNo}}</ion-label>
+            </ion-col>
         </ion-row>
-      <ion-row>
-          <ion-col>
+        <ion-row>
+            <ion-col>
                 <ion-label>Claim for the month of :</ion-label>
-               </ion-col>
-               <ion-col>
-                  <ion-label> {{formDetails.claimMonth}}</ion-label>
-              </ion-col>
-              </ion-row>
-              
-                <ion-row>
-                    <ion-col>
-                        <ion-label >Name of Employee :</ion-label>
-                    </ion-col>
-                    <ion-col>
-                        <ion-label> {{formDetails.NameOfEmployee}}</ion-label>
-                    </ion-col>
-                   
-                    
-                  </ion-row>
-                  <ion-row>
-                      <ion-col>
-                      <ion-label >EPF No :</ion-label>
-                    </ion-col>
-                      <ion-col>
-                          <ion-label> {{formDetails.EpfNo}}</ion-label>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                    <ion-col>
-                    <ion-label >Requested Date :</ion-label>
-                  </ion-col>
-                    <ion-col>
-                    <ion-label> {{formDetails.requestDate}}</ion-label>
-                </ion-col>
-              </ion-row>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.claimMonth}}</ion-label>
+            </ion-col>
+        </ion-row>
 
-              <ion-row>
-                <ion-col>
-                <ion-label >Name of the patient :</ion-label>
-              </ion-col>
-                <ion-col>
-                    <ion-label> {{formDetails.patientName}}</ion-label>
-                </ion-col>
-              </ion-row>
-          
-            <ion-row>
-                <ion-col>
-              <ion-label >Patients relationship to the employee :</ion-label>
-              </ion-col>
-              <ion-col>
-                  <ion-label> {{formDetails.relationship}}</ion-label>
-              </ion-col>
-            </ion-row>
-            
-                <ion-row>
-                    <ion-col>
-                    <ion-label >Name of the Specialist :</ion-label>
-                    </ion-col>
-                    <ion-col>
-                        <ion-label> {{formDetails.nameDoctor}}</ion-label>
-                    </ion-col>
-                  </ion-row>
-      
-                  <ion-row>
-                      <ion-col>
-                      <ion-label >Nature of illness :</ion-label>
-                      </ion-col>
-                      <ion-col>
-                          <ion-label> {{formDetails.NatureIllness}}</ion-label>
-                      </ion-col>
-                    </ion-row>
-      
-                    <ion-row>
-                        <ion-col>
-                        <ion-label >Date of Expenditure :</ion-label>
-                        </ion-col>
-                        <ion-col>
-                            <ion-label> {{formDetails.dateofExpenditure}}</ion-label>
-                        </ion-col>
-                  </ion-row>
-               
-                 
-                  <ion-row>
-                      <ion-col>
-                      <ion-label >Receipt No :</ion-label>
-                      </ion-col>
-                      <ion-col>
-                          <ion-label> {{formDetails.recieptNo}}</ion-label>
-                      </ion-col>
-                    </ion-row>
-      
-      
-                  <ion-row>
-                      <ion-col>
-                      <ion-label >Amount of expenditure :</ion-label>
-                      </ion-col>
-                      <ion-col>
-                          <ion-label> {{formDetails.amount}}</ion-label>
-                      </ion-col>
-                    </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-label>Name of Employee :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.NameOfEmployee}}</ion-label>
+            </ion-col>
 
-                    <ion-row>
-                        <ion-col>
-                        <ion-label >Receipt :</ion-label>
-                        </ion-col>
-                        <ion-col>
-                            <img [src]="formDetails.employeefile">
-                        </ion-col>
-                      </ion-row>
-                   Í
-             
+
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-label>EPF No :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.EpfNo}}</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-label>Requested Date :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.requestDate}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label>Name of the patient :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.patientName}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label>Patients relationship to the employee :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.relationship}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label>Name of the Specialist :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.nameDoctor}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label>Nature of illness :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.NatureIllness}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label>Date of Expenditure :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.dateofExpenditure}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+            <ion-col>
+                <ion-label>Receipt No :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.recieptNo}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+            <ion-col>
+                <ion-label>Amount of expenditure :</ion-label>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{formDetails.amount}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-label>Receipt :</ion-label>
+            </ion-col>
+            <ion-col *ngFor="let element of formDetails.employeefile">
+                <img [src]="element" imageViewer>
+            </ion-col>
+        </ion-row>
+        
+
 
     </ion-list>
 
