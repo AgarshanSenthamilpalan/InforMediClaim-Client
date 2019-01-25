@@ -6,12 +6,12 @@ import { MyApp } from './app.component';
 import { PendingclaimsPage } from '../pages/pendingclaims/pendingclaims';
 import { HistoryPage  } from '../pages/history/history';
 import { PatientdetailsPage } from '../pages/patientdetails/patientdetails';
-
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { FormdetailsPage } from '../pages/formdetails/formdetails';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { LoginPage } from '../pages/login/login'
-
+import { DecimalPipe } from '@angular/common';
 import { Network } from '@ionic-native/network';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,12 +42,14 @@ var config = {
   ],
   imports: [
     BrowserModule,
+    IonicImageViewerModule,
     IonicModule.forRoot(MyApp,{
       tabsPlacement:'top',
     }),
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(config),
     IonicStorageModule.forRoot()
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,6 +65,7 @@ var config = {
 
   ],
   providers: [
+    DecimalPipe,
     StatusBar,
     SplashScreen,Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -3,11 +3,7 @@
     <button ion-button menuToggle left>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="notifications"></ion-icon>
-      </button>
-    </ion-buttons>
+   
     <ion-title class="title-style">Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,20 +12,22 @@
 
 <ion-content class="background">
  
-
-    <ion-title>
+    <br>
+    <div class="textcolor">
       Welcome {{name}}
-    </ion-title>
-
+</div>
+    <br>
   
-    <ion-card >
+    <ion-card>
         <ion-card-header>
            Claim Balance Summary
           </ion-card-header>
           <ion-card-content>
-        <ion-item id="chart_div" >
+        <ion-item  id="barchart_values" >
 
           </ion-item>
+          <br>
+          <br>
           <ion-row>
               <ion-col>
                   <ion-fab  right bottom>

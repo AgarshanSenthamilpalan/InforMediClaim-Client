@@ -1,4 +1,10 @@
-
+page-patientdetails{
+    .textcolor{
+        color: white;
+               text-align: center;
+               font-size: 24px;
+        
+      }
 .alignleft{
     
     display: block;
@@ -20,13 +26,14 @@
     
     display: inline;
 }
-.button-inner {
-    flex-flow: column;
-  }
+// .button-inner {
+//     flex-flow: column;
+//   }
 
   .my-label {
     font-size: 12px;
   }
   .background {
-    background: url('/assets/imgs/bluebackground.jpeg')
+    background-color: rgb(102, 133, 226)
   }
+}

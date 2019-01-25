@@ -130,11 +130,11 @@
             <ion-col>
                 <ion-label>Receipt :</ion-label>
             </ion-col>
-            <ion-col>
-                <img [src]="formDetails.employeefile">
+            <ion-col *ngFor="let element of formDetails.employeefile">
+                <img [src]="element" imageViewer>
             </ion-col>
         </ion-row>
-        Í
+        
 
 
     </ion-list>

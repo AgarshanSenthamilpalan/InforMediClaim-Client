@@ -9,7 +9,9 @@
 
 
 <ion-content class="background" padding>
-  <ion-title class="aligncenter">Swipe to view/delete claims</ion-title>
+  <div class="textcolor">Swipe to view/delete claims</div>
+  <br>
+  
   <div *ngFor="let form of forms">
     <div *ngIf="form.user_id == 101">
       <ion-list>
