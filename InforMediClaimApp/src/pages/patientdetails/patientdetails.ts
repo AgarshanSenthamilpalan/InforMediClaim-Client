@@ -5,9 +5,8 @@ import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Camera, CameraOptions } from "@ionic-native/camera"
 import { AlertController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
-import { ParseError } from '@angular/compiler';
+
 
 @IonicPage()
 @Component({
@@ -131,7 +130,7 @@ export class PatientdetailsPage {
         // this.uploadButtonHide = false;
       }
       catch (e) {
-        console.error(e);
+      alert("theradfdf" + e);
       }
 
     } else {
@@ -225,12 +224,14 @@ export class PatientdetailsPage {
     })
 
 
+    var remainingClaimBalance = this.availableBalance - this.requestedClaimAmount
+    document.getElementById("validate_balance").innerHTML = "Maximum claimable amount " + remainingClaimBalance.toString();
+
     let currentIndex = this.navCtrl.getActive().index;
     this.navCtrl.push(PatientdetailsPage).then(() => {
       this.navCtrl.remove(currentIndex);
     });
-    var remainingClaimBalance = this.availableBalance - this.requestedClaimAmount
-    document.getElementById("validate_balance").innerHTML = "Maximum claimable amount " + remainingClaimBalance.toString();
+    
     
 
     
@@ -297,7 +298,7 @@ export class PatientdetailsPage {
   deleteButtonClicked(element) {
 
     let alert = this.alertCtrl.create({
-      title: 'Confirm Submission',
+      title: 'Delete Receipt',
       message: 'Do you want to delete the receipt',
       buttons: [
         {

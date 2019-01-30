@@ -64,9 +64,12 @@
           </ion-segment>
     </ion-card-content>
     
-      <ion-item id="table_div">
-
-      </ion-item>
+    
+    <p id="form_available" *ngIf="tableEmpty" style="text-align:center">No Request Available</p>
+      
+    <ion-item id="table_div" >
+        
+    </ion-item>
     
   </ion-card>
 

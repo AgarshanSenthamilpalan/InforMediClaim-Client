@@ -31,9 +31,7 @@ export class MyApp {
     this.pages = [{title: 'Dashboard' , component: DashboardPage},
       {title: 'New Request' , component: PatientdetailsPage},
       {title: 'Pending Claims' , component: PendingclaimsPage},
-      {title: 'History' , component: HistoryPage},
-      
-      
+      {title: 'History' , component: HistoryPage}
     ];
 
   }
